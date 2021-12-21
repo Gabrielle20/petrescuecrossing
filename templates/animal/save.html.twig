@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row g-3">
+            {{ form_start(form) }}
+            <div class="form-floating">
+                {# form_widget  #}
+                {{ form_widget(form.nom, {attr: {class: "form-control", placeholder: "Nom"}})}}
+                {{ form_label(form.nom)}}
+            </div>
+            <div class="form-floating">
+                {{ form_widget(form.age, {attr: {class: "form-control", placeholder: "10"}})}}
+                {{ form_label(form.age)}}
+            </div>
+            <div class="form-floating mb-3">
+                {{ form_widget(form.type, {attr: {class: "form-control", placeholder: "Chien"}})}}
+                {{ form_label(form.type)}}
+            </div>
+            <div class="form-floating mb-3">
+                {{ form_widget(form.couleur, {attr: {class: "form-control", placeholder: "Brun"}})}}
+                {{ form_label(form.couleur)}}
+            </div>
+            <div class="form-floating mb-3">
+                {{ form_widget(form.description, {attr: {class: "form-control", placeholder: "Brun"}})}}
+                {{ form_label(form.description)}}
+            </div>
+            <div class="form-floating mb-3">
+                {{ form_widget(form.date_arrive, {attr: {class: "form-control", placeholder: ""}})}}
+                {{ form_label(form.date_arrive)}}
+            </div>
+
+
+            <div>
+                {{form_row(form.Ajouter)}}
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
