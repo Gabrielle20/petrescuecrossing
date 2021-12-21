@@ -22,4 +22,4 @@
 .gitignore
 migrations/Version20211221081949.php
 migrations/Version20211221083101.php
-/migrations/
+.env
