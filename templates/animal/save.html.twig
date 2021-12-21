@@ -2,15 +2,29 @@
 
 {% block body %}
 
+
+
+    <h1 style="text-align: center">Ajout d'un Animal</h1>
+
+    <div class="alert">
+        {% for type, messages in app.flashes %}
+            <div class="alert-{{type}}">
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+
     <div class="container">
         <div class="row g-3">
             {{ form_start(form) }}
-            <div class="form-floating">
+            <div class="form-floating mb-3">
                 {# form_widget  #}
                 {{ form_widget(form.nom, {attr: {class: "form-control", placeholder: "Nom"}})}}
                 {{ form_label(form.nom)}}
             </div>
-            <div class="form-floating">
+            <div class="form-floating mb-3">
                 {{ form_widget(form.age, {attr: {class: "form-control", placeholder: "10"}})}}
                 {{ form_label(form.age)}}
             </div>
@@ -29,6 +43,9 @@
             <div class="form-floating mb-3">
                 {{ form_widget(form.date_arrive, {attr: {class: "form-control", placeholder: ""}})}}
                 {{ form_label(form.date_arrive)}}
+            </div>
+            <div>
+                {{form_row(form.picture)}}
             </div>
 
 

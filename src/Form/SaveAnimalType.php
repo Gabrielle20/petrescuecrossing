@@ -6,6 +6,7 @@ use App\Entity\Animal;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -41,6 +42,10 @@ class SaveAnimalType extends AbstractType
                 "label" => "Date d'arrivée",
                 "attr" => ["class" => "form-group"]
             ])
+
+            ->add('picture', FileType::class, ["label" => "Image (JPEG/PNG)",
+                "attr" => ["class" => "form-control"]])
+
             ->add("Ajouter", SubmitType::class,[
                 "attr" => ["class" => "btn btn-primary"]
             ])

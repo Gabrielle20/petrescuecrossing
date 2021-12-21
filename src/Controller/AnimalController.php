@@ -34,10 +34,9 @@ class AnimalController extends AbstractController
         $form->handleRequest($request);
 
         // Si les données sont ok
-        /*if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
 
             $picture = $form->get('picture')->getData();
-            dump($picture);
             $pictureName = md5(uniqid()).'.'. $picture->guessExtension();
 
             $picture->move(
@@ -46,23 +45,21 @@ class AnimalController extends AbstractController
                 $this->getParameter('upload_file'),
                 $pictureName
             );
-            $post->setPicture($pictureName);
+            $animal->setPicture($pictureName);
 
 
-            // On ajoute le createdAt à l'article
-            $post->setCreatedAt(new \DateTime());
             // On le persist et l'enregistre en BDD
             $em = $mr->getManager();
-            $em->persist($post);
+            $em->persist($animal);
             $em->flush();
 
             // On génère un message flash qui apparaîtra sur la page d'accueil pour valider l'enregistrement
             // de l'article auprès de l'utilisateur
-            $this->addFlash("success", "Article bien enregistré");
+            $this->addFlash("success", "Animal bien enregistré");
 
             // On retourne sur la page d'accueil
-            return $this->redirectToRoute("category_list");
-        }*/
+            return $this->redirectToRoute("addAnimal");
+        }
         // On charge le template save en lui passant le formulaire dont on a besoin
         // Attention le formulaire est toujours passé avec ->createView()
         return $this->render("animal/save.html.twig", [
