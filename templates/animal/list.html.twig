@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+
+
+    <h1 style="text-align: center">Ajout d'un Animal</h1>
+
+    <div class="container">
+        <ul>
+        {% for animal in animals %}
+            <li><a href="{{ path('singlAnimal',{id: animal.id}) }}">{{animal.nom}}</a></li>
+        {% else %}
+            <li>Il n'y a pas d'animaux pour le moment</li>
+        {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

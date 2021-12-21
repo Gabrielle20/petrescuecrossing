@@ -13,6 +13,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AnimalController extends AbstractController
 {
+
+
     /**
      * @Route("/", name="index")
      */
@@ -22,6 +24,19 @@ class AnimalController extends AbstractController
             'controller_name' => 'AnimalController',
         ]);
     }
+
+    /**
+     * @Route("/animal/animal_list", name="animaList")
+     */
+    public function list(): Response
+    {
+        $animals = $this->getDoctrine()->getRepository(Animal::class)->findAll();
+        return $this->render('animal/list.html.twig', [
+            'animals' => $animals
+        ]);
+    }
+
+
     /**
      * @Route("/animal/save", name="addAnimal")
      */
@@ -58,12 +73,22 @@ class AnimalController extends AbstractController
             $this->addFlash("success", "Animal bien enregistré");
 
             // On retourne sur la page d'accueil
-            return $this->redirectToRoute("addAnimal");
+            return $this->redirectToRoute("animaList");
         }
         // On charge le template save en lui passant le formulaire dont on a besoin
         // Attention le formulaire est toujours passé avec ->createView()
         return $this->render("animal/save.html.twig", [
             'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/animal/single/{id}", name="singlAnimal")
+     */
+    public function showSingle(Animal $animal): Response
+    {
+        return $this->render('animal/single.html.twig', [
+            'animal' => $animal
         ]);
     }
 }
