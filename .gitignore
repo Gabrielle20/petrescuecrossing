@@ -20,3 +20,4 @@
 ###< phpunit/phpunit ###
 .env
 .gitignore
+migrations/Version20211221081949.php
