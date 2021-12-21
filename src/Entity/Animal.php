@@ -54,6 +54,11 @@ class Animal
      */
     private $date_arrive;
 
+    /**
+     * @ORM\Column(type="string", length=40)
+     */
+    private $picture;
+
     public function __construct()
     {
         $this->dossiers = new ArrayCollection();
@@ -164,5 +169,29 @@ class Animal
         $this->date_arrive = $date_arrive;
 
         return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture($picture): self
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * ORM\PostRemove
+     */
+    public function deletePicture()
+    {
+        if (file_exists(__DIR__.'/../../public/img/uploads/'. $this->picture)) {
+            unlink(__DIR__.'/../../public/img/uploads/'. $this->picture);
+        }
+
+        return true;
     }
 }
