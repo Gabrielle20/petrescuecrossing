@@ -65,6 +65,8 @@ class User implements UserInterface
      */
     private $paniers;
 
+    private $roles;
+
     public function __construct()
     {
         $this->dossiers = new ArrayCollection();
@@ -234,7 +236,7 @@ class User implements UserInterface
 
     public function getUserIdentifier()
     {
-        
+        return $this->getEmail();   
     }
 
     /**

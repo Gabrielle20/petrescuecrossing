@@ -6,9 +6,25 @@ body, html {
 
 
 footer {
-    background: #212529;
-    position:absolute;
+    /* background: #212529;
+    position:sticky;
     bottom:0;
-    left:0;
+    left:0; */
+    display:none;
 }
   
+
+.div-center {
+    margin: 0 auto;
+}
+
+.security-forms {
+    width:300px;
+    max-width: 300px;
+    margin: 0 auto;
+    margin-top: 3rem;
+}
+
+.security-forms > h2 {
+    text-align: center;
+}

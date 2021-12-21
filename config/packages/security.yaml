@@ -3,6 +3,7 @@ security:
         App\Entity\User:
             algorithm: bcrypt
 
+
     enable_authenticator_manager: true
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
@@ -10,20 +11,28 @@ security:
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
         users_in_memory: { memory: null }
-        # app_user_provider:
-            # entity:
-                # class: App\Entity\User
-                # property: email
-
+        in_database:
+            entity:
+                class: App\Entity\User
+                property: email
 
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            #anonymous: lazy
             lazy: true
-            provider: users_in_memory
+            #provider: users_in_memory
+
+            provider: in_database
+           
+            form_login:
+                login_path: security_connexion
+                check_path: security_connexion
+
+            logout:
+                path: logout
+                target: index
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall

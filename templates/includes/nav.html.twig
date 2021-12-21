@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
 
-        <a class="navbar-brand" href="{{ path('index') }}">Pet Rescue Crossing</a>
+        <a href="{{ path('index') }}" class="navbar-brand">Pet Rescue Crossing</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -18,7 +18,14 @@
               <a class="nav-link" href="#">Faire un don</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Se Connecter</a>
+              {% if app.user %}
+                <a class="nav-link" href="/deconnexion">Déconnexion</a>
+              {% else %}
+                <a class="nav-link" href="/login">Connexion</a>
+              {% endif %}
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/inscription">Inscription</a>
             </li>
             <li class="nav-item">
               <a class="nav-link disabled" href="#">Disabled</a>
