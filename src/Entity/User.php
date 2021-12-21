@@ -49,9 +49,15 @@ class User
      */
     private $dossiers;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Dons::class, mappedBy="user")
+     */
+    private $dons;
+
     public function __construct()
     {
         $this->dossiers = new ArrayCollection();
+        $this->dons = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -143,6 +149,36 @@ class User
             // set the owning side to null (unless already changed)
             if ($dossier->getUser() === $this) {
                 $dossier->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Dons[]
+     */
+    public function getDons(): Collection
+    {
+        return $this->dons;
+    }
+
+    public function addDon(Dons $don): self
+    {
+        if (!$this->dons->contains($don)) {
+            $this->dons[] = $don;
+            $don->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDon(Dons $don): self
+    {
+        if ($this->dons->removeElement($don)) {
+            // set the owning side to null (unless already changed)
+            if ($don->getUser() === $this) {
+                $don->setUser(null);
             }
         }
 
