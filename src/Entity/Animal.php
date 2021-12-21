@@ -49,6 +49,11 @@ class Animal
      */
     private $dossiers;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $date_arrive;
+
     public function __construct()
     {
         $this->dossiers = new ArrayCollection();
@@ -145,6 +150,18 @@ class Animal
                 $dossier->setAnimal(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDateArrive(): ?\DateTimeInterface
+    {
+        return $this->date_arrive;
+    }
+
+    public function setDateArrive(?\DateTimeInterface $date_arrive): self
+    {
+        $this->date_arrive = $date_arrive;
 
         return $this;
     }
