@@ -17,4 +17,13 @@ class AnimalController extends AbstractController
             'controller_name' => 'AnimalController',
         ]);
     }
+    /**
+     * @Route("/animal", name="index")
+     */
+    public function save(): Response
+    {
+        return $this->render('front/index.html.twig', [
+            'controller_name' => 'AnimalController',
+        ]);
+    }
 }
