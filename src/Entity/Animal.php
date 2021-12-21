@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
+use App\Repository\AnimalRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @ORM\Entity(repositoryClass=AnimalRepository::class)
  */
-class User
+class Animal
 {
     /**
      * @ORM\Id
@@ -20,32 +20,32 @@ class User
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=255)
      */
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="integer", nullable=true)
      */
-    private $prenom;
+    private $age;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $mdp;
+    private $type;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $email;
+    private $couleur;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $admin;
+    private $description;
 
     /**
-     * @ORM\OneToMany(targetEntity=Dossier::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Dossier::class, mappedBy="animal", orphanRemoval=true)
      */
     private $dossiers;
 
@@ -71,50 +71,50 @@ class User
         return $this;
     }
 
-    public function getPrenom(): ?string
+    public function getAge(): ?int
     {
-        return $this->prenom;
+        return $this->age;
     }
 
-    public function setPrenom(string $prenom): self
+    public function setAge(?int $age): self
     {
-        $this->prenom = $prenom;
+        $this->age = $age;
 
         return $this;
     }
 
-    public function getMdp(): ?string
+    public function getType(): ?string
     {
-        return $this->mdp;
+        return $this->type;
     }
 
-    public function setMdp(string $mdp): self
+    public function setType(string $type): self
     {
-        $this->mdp = $mdp;
+        $this->type = $type;
 
         return $this;
     }
 
-    public function getEmail(): ?string
+    public function getCouleur(): ?string
     {
-        return $this->email;
+        return $this->couleur;
     }
 
-    public function setEmail(string $email): self
+    public function setCouleur(?string $couleur): self
     {
-        $this->email = $email;
+        $this->couleur = $couleur;
 
         return $this;
     }
 
-    public function getAdmin(): ?bool
+    public function getDescription(): ?string
     {
-        return $this->admin;
+        return $this->description;
     }
 
-    public function setAdmin(bool $admin): self
+    public function setDescription(?string $description): self
     {
-        $this->admin = $admin;
+        $this->description = $description;
 
         return $this;
     }
@@ -131,7 +131,7 @@ class User
     {
         if (!$this->dossiers->contains($dossier)) {
             $this->dossiers[] = $dossier;
-            $dossier->setUser($this);
+            $dossier->setAnimal($this);
         }
 
         return $this;
@@ -141,8 +141,8 @@ class User
     {
         if ($this->dossiers->removeElement($dossier)) {
             // set the owning side to null (unless already changed)
-            if ($dossier->getUser() === $this) {
-                $dossier->setUser(null);
+            if ($dossier->getAnimal() === $this) {
+                $dossier->setAnimal(null);
             }
         }
 
