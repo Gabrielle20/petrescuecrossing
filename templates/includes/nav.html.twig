@@ -17,19 +17,34 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Faire un don</a>
             </li>
-            <li class="nav-item">
-              {% if app.user %}
-                <a class="nav-link" href="/deconnexion">Déconnexion</a>
-              {% else %}
+             
+            {% if not app.user %}
+              <li class="nav-item">
                 <a class="nav-link" href="/login">Connexion</a>
-              {% endif %}
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/inscription">Inscription</a>
-            </li>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/inscription">Inscription</a>
+              </li>
+            {% endif %}
+
             <li class="nav-item">
               <a class="nav-link disabled" href="#">Disabled</a>
             </li>
+
+            {% if app.user %}
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Dropdown
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{{ path('user_account', {'id': app.user.id}) }}">Mon Compte</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="/deconnexion">Déconnexion</a>
+                </div>
+              </li>
+            {% endif %}
+            
           </ul>
         </div>
 

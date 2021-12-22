@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+
+        <div class="alert">
+            {% for type, messages in app.flashes %}
+                <div class="alert-{{ type }}">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+   
+        <div class="row">
+            <div class="col-md-3 border-right">
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                    <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                    <span class="font-weight-bold">{{ user.prenom }} {{ user.nom }}</span>
+                    <span class="text-black-50">{{ user.email }}</span>
+                    <span> </span>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div style="margin-top:6rem;">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                <h6 class="mb-0">Nom</h6>
+                                </div>
+
+                                <div class="col-sm-9 text-secondary">
+                                {{ user.nom }}
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="row">
+                                <div class="col-sm-3">
+                                <h6 class="mb-0">Prénom</h6>
+                                </div>
+
+                                <div class="col-sm-9 text-secondary">
+                                {{ user.prenom }}
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="row">
+                                <div class="col-sm-3">
+                                <h6 class="mb-0">Pseudo</h6>
+                                </div>
+
+                                <div class="col-sm-9 text-secondary">
+                                {{ user.username }}
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="row">
+                                <div class="col-sm-3">
+                                <h6 class="mb-0">Email</h6>
+                                </div>
+
+                                <div class="col-sm-9 text-secondary">
+                                {{ user.email }}
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                <a class="btn btn-info " target="__blank" href="{{ path('user_account_edit', {'id': user.id}) }}">Edit</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
