@@ -34,16 +34,7 @@ class Produit
      */
     private $description;
 
-    /**
-     * @ORM\ManyToMany(targetEntity=ProduitsPanier::class, mappedBy="produit_id")
-     */
-    private $produitsPaniers;
-
-    public function __construct()
-    {
-        $this->produitsPaniers = new ArrayCollection();
-    }
-
+  
     public function getId(): ?int
     {
         return $this->id;
@@ -85,30 +76,5 @@ class Produit
         return $this;
     }
 
-    /**
-     * @return Collection|ProduitsPanier[]
-     */
-    public function getProduitsPaniers(): Collection
-    {
-        return $this->produitsPaniers;
-    }
-
-    public function addProduitsPanier(ProduitsPanier $produitsPanier): self
-    {
-        if (!$this->produitsPaniers->contains($produitsPanier)) {
-            $this->produitsPaniers[] = $produitsPanier;
-            $produitsPanier->addProduitId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeProduitsPanier(ProduitsPanier $produitsPanier): self
-    {
-        if ($this->produitsPaniers->removeElement($produitsPanier)) {
-            $produitsPanier->removeProduitId($this);
-        }
-
-        return $this;
-    }
+  
 }

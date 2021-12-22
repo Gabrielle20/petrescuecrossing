@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Repository\PanierRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,6 +43,16 @@ class UserController extends AbstractController
         return $this->render('user/editAccount.html.twig', [
             'user' => $user,
             'form' => $form->createView()
+        ]);
+    }
+
+
+    /**
+     * @Route("/user/{id}/commandes", name="user_commandes")
+     */
+    public function getAllCommandes(User $user, PanierRepository $repo) {
+        return $this->render('user/commandes.html.twig', [
+            'user' => $user
         ]);
     }
 }
