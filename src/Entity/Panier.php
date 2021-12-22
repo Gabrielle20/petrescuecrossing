@@ -96,32 +96,6 @@ class Panier
         return $this;
     }
 
-    /**
-     * @return Collection|ProduitsPanier[]
-     */
-    public function getProduitsPaniers(): Collection
-    {
-        return $this->produitsPaniers;
-    }
-
-    public function addProduitsPanier(ProduitsPanier $produitsPanier): self
-    {
-        if (!$this->produitsPaniers->contains($produitsPanier)) {
-            $this->produitsPaniers[] = $produitsPanier;
-            $produitsPanier->addPanierId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeProduitsPanier(ProduitsPanier $produitsPanier): self
-    {
-        if ($this->produitsPaniers->removeElement($produitsPanier)) {
-            $produitsPanier->removePanierId($this);
-        }
-
-        return $this;
-    }
 
     public function getDate(): ?\DateTimeInterface
     {

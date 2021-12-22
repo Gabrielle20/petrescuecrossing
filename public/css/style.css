@@ -3,7 +3,9 @@ body, html {
     position:relative;
 }
 
-
+a {
+    text-decoration: none;
+}
 
 footer {
     /* background: #212529;
@@ -29,7 +31,13 @@ footer {
     text-align: center;
 }
 
+.to-show {
+    display: none;
+}
 
+.is-visible {
+    display: table-row;
+}
 
 .profile-button {
     background: rgb(99, 39, 120);
