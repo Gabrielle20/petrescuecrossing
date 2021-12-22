@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BackController!{% endblock %}
+
+{% block body %}
+
+
+    <div class="container">
+        <div class="alert">
+            {% for type, messages in app.flashes %}
+                <div class="alert-{{ type }}">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="row" style="margin-top: 6rem; justify-content:space-around;">
+            {% for produit in produits %}
+                <div class="card" style="width: 18rem;">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ produit.nom }}</h5>
+                        <p class="card-text">{{ produit.description }}</p>
+                    </div>
+
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Prix : {{ produit.prix }}€</li>
+                    </ul>
+
+                    <div class="card-body">
+                        <a href="{{ path('back_produit_create') }}" class="card-link ">Créer</a>
+                        <a href="{{ path('back_produit_edit', {'id': produit.id}) }}" class="card-link ">Modifier</a>
+                        <a href="{{ path('back_produit_delete', {'id': produit.id}) }}" class="card-link" onclick="return confirm('Voulez-vous vraiment supprimer cet article ?')">Supprimer</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+{% endblock %}

@@ -51,7 +51,6 @@ class Panier
 
     public function __construct()
     {
-        $this->produitsPaniers = new ArrayCollection();
         $this->produits = new ArrayCollection();
     }
 

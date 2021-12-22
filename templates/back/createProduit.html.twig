@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+
+
+
+{% block body %}
+
+
+    <div class="container">
+        <div class="div-center">
+            <div class="security-forms">
+                <h2>Créer un nouvel article</h2>
+                {{ form_start(form) }}
+                    {{ form_row(form.nom) }}
+                    {{ form_row(form.prix) }}
+                    {{ form_row(form.description) }}
+                    <br>
+                    <button type="submit" class="btn btn-success">Enregistrer</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

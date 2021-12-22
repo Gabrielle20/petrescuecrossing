@@ -38,6 +38,10 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="{{ path('user_account', {'id': app.user.id}) }}">Mon Compte</a>
+                  {% if app.user.admin == true %}
+                    <a class="dropdown-item" href="{{ path('back_list_produits') }}">Gestion</a>
+                  {% endif %}
+                  
                   <a class="dropdown-item" href="#">Another action</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="/deconnexion">Déconnexion</a>
