@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Faire un don{% endblock %}
+
+{% block head_css %}
+    <!-- Copy CSS from https://getbootstrap.com/docs/4.4/getting-started/introduction/#css -->
+{% endblock %}
+
+{% block head_js %}
+    <!-- Copy JavaScript from https://getbootstrap.com/docs/4.4/getting-started/introduction/#js -->
+{% endblock %}
+
+{% block body %}
+    <div class="dons">
+        <p>Cagnotte actuelle: {{montant}}</p>
+    </div>
+
+    <div class="col-lg-7">
+        <div class="card">
+            <div class="card-header">
+                <strong>Faire un don</strong>
+            </div>
+
+            <div class="card-body card-block">
+                <div class="row form-group">
+                    <div class="col col-md-4">
+                        {{ form_start(form) }}
+                            {{ form_row(form.montant) }}
+                            <br/>
+                            <button type="submit" class="btn btn-success">Valider</button>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+
+            </div>
+            <div class="card-footer">
+                <div class="alert">
+                    {% for type, messages in app.flashes %}
+                        <div class="alert-{{type}}">
+                            {% for message in messages %}
+                                <p>{{message}}</p>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+{% endblock %}
