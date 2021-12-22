@@ -51,12 +51,12 @@ class DonsController extends AbstractController
         $montant = $this->get('session')->getFlashBag()->get('montant');
         $dataMontant= isset($montant[0]) ? $montant[0] : $montant;
 
-        $form = $this -> createFormBuilder()->add('Nom', TextType::class, array('attr' => array('class' => 'form-control','style' => 'margin-right:5px')))
-            ->add('NumCarte', NumberType::class, array('attr' => array('class' => 'form-control','style' => 'margin-right:5px')))
-            ->add('Date', DateType::class, array('attr' => array('class' => 'form-control','style' => 'margin-right:5px')))
-            ->add('cvv', NumberType::class, array('attr' => array('class' => 'form-control','style' => 'margin-right:5px')))
+        $form = $this -> createFormBuilder()->add('name', TextType::class)
+            ->add('NumCarte', NumberType::class)
+            ->add('Date', DateType::class)
+            ->add('cvv', NumberType::class)
+            ->add('Valider', SubmitType::class)
             ->add('montant', HiddenType::class, ["data" => $dataMontant])
-            ->add('Valider', SubmitType::class, array('attr' => array('class' => 'btn btn-success','style' => 'margin-top:5px')))
             ->getForm();
         $form -> handleRequest($request);
 

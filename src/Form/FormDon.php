@@ -19,7 +19,7 @@ class PostType extends AbstractType
     {
         $choices = $this->createChoices();
         $builder
-            ->add('montant', NumberType::class, array('attr' => array('class' => 'form-control','style' => 'margin-right:5px')))
+            ->add('montant', NumberType::class)
         ;
     }
 

@@ -11,73 +11,46 @@
 {% endblock %}
 
 {% block body %}
-    <style>
-        body{
-            background-image: url("https://media.istockphoto.com/vectors/space-background-vector-id931901602?k=20&m=931901602&s=612x612&w=0&h=EdOaPd97sOkDeQEh5iHlPv0P5dduAYJFK1GnRC9sBxA=");
-            background-size: 100% 100%;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-color: #FFF6CF;
-            position: relative;
-        }
-        .btn-don {
-            text-align: center;
-            font: 18px/1.5 sans-serif;
-            margin-top: 5%;
-            margin-bottom: 5%;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 15px 0;
-            float: none;
-            background-color: #198754;
-            max-width: 45%;
-            border-radius: 10px;
-            color: white;
-        }
-        .btn-don:hover{
-            color: white;
-        }
-        .card{margin: 0 auto; float: none; width: 50%;}
-    </style>
-    <div class="bg-img">
-        <div class="btn-don btn-don-header">
-            <a href="" class="btn-don text-uppercase" target="_blank" id="bouton-don">
-                <i class="fas fa-heart"></i>
-                Cagnotte actuelle: {{montant}}€
-            </a>
-        </div>
+    <div class="dons">
+        <p>Cagnotte actuelle: {{montant}}</p>
+    </div>
 
-        <div class="col-lg-12">
-            <div class="card">
-                <div class="card-header">
-                    <strong>Faire un don</strong>
-                </div>
+    <div class="col-lg-7">
+        <div class="card">
+            <div class="card-header">
+                <strong>Faire un don</strong>
+            </div>
 
-                <div class="card-body card-block">
-                    <div class="row form-group">
-                        <div class="col col-md-8">
-                            {{ form_start(form) }}
-                                {{ form_row(form.montant) }}
-                                <br/>
-                                <button type="submit" class="btn btn-success">Valider</button>
-                            {{ form_end(form) }}
-                        </div>
-                    </div>
-
-                </div>
-                <div class="card-footer">
-                    <div class="alert">
-                        {% for type, messages in app.flashes %}
-                            <div class="alert-{{type}}">
-                                {% for message in messages %}
-                                    <p>{{message}}</p>
-                                {% endfor %}
-                            </div>
-                        {% endfor %}
+            <div class="card-body card-block">
+                <div class="row form-group">
+                    <div class="col col-md-4">
+                        {{ form_start(form) }}
+                            {{ form_row(form.montant) }}
+                            <br/>
+                            <button type="submit" class="btn btn-success">Valider</button>
+                        {{ form_end(form) }}
                     </div>
                 </div>
 
             </div>
+            <div class="card-footer">
+                <div class="alert">
+                    {% for type, messages in app.flashes %}
+                        <div class="alert-{{type}}">
+                            {% for message in messages %}
+                                <p>{{message}}</p>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
         </div>
     </div>
+
+
+
+
+
+
 {% endblock %}
