@@ -9,9 +9,11 @@ use App\Entity\Dossier;
 use App\Form\DossierType;
 use App\Form\ValidateDossierType;
 use App\Controller\SecurityController;
+use DeprecationTests\Foo;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -108,7 +110,7 @@ class DossierController extends AbstractController
     /**
      * @Route("/dossier/changeStatus/{id}", name="changeStatus")
      */
-    public function changeStatus(Dossier $dossier,Request $request, ManagerRegistry $mr)
+    public function changeStatus(Dossier $dossier,Request $request, ManagerRegistry $mr, MailerInterface $mailer)
     {
         $status = $request->request->get('status');
 
@@ -118,7 +120,7 @@ class DossierController extends AbstractController
         $em->flush();
 
         if($status ==  "En cours d'examen"){
-            (new EmailController())->sendMail();
+            (new EmailController())->sendMail($mailer, $this->getUser(), $dossier->getId());
         }
 
         $this->addFlash("success",'Statut changé avec succès');
