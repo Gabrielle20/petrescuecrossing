@@ -86,7 +86,7 @@ class DossierController extends AbstractController
             if($form->isSubmitted() && $form->isValid())
             {
 
-                $dossier->setStatut(0); 
+                $dossier->setStatut("En attente");
                 $dossier->setUser($user);
 
                 $dossier->setDate(new \DateTime());
