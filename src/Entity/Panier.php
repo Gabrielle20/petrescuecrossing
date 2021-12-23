@@ -39,9 +39,19 @@ class Panier
      */
     private $produitsPaniers;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $date;
+
+    /**
+     * @ORM\OneToMany(targetEntity=ProduitsPanier::class, mappedBy="panier", orphanRemoval=true)
+     */
+    private $produits;
+
     public function __construct()
     {
-        $this->produitsPaniers = new ArrayCollection();
+        $this->produits = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -85,28 +95,44 @@ class Panier
         return $this;
     }
 
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): self
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
     /**
      * @return Collection|ProduitsPanier[]
      */
-    public function getProduitsPaniers(): Collection
+    public function getProduits(): Collection
     {
-        return $this->produitsPaniers;
+        return $this->produits;
     }
 
-    public function addProduitsPanier(ProduitsPanier $produitsPanier): self
+    public function addProduit(ProduitsPanier $produit): self
     {
-        if (!$this->produitsPaniers->contains($produitsPanier)) {
-            $this->produitsPaniers[] = $produitsPanier;
-            $produitsPanier->addPanierId($this);
+        if (!$this->produits->contains($produit)) {
+            $this->produits[] = $produit;
+            $produit->setPanier($this);
         }
 
         return $this;
     }
 
-    public function removeProduitsPanier(ProduitsPanier $produitsPanier): self
+    public function removeProduit(ProduitsPanier $produit): self
     {
-        if ($this->produitsPaniers->removeElement($produitsPanier)) {
-            $produitsPanier->removePanierId($this);
+        if ($this->produits->removeElement($produit)) {
+            // set the owning side to null (unless already changed)
+            if ($produit->getPanier() === $this) {
+                $produit->setPanier(null);
+            }
         }
 
         return $this;

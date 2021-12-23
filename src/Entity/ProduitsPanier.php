@@ -25,20 +25,19 @@ class ProduitsPanier
     private $prix;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Produit::class, inversedBy="produitsPaniers")
+     * @ORM\ManyToOne(targetEntity=Panier::class, inversedBy="produits")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $produit_id;
+    private $panier;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Panier::class, inversedBy="produitsPaniers")
+     * @ORM\ManyToOne(targetEntity=Produit::class)
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $panier_id;
+    private $produit;
 
-    public function __construct()
-    {
-        $this->produit_id = new ArrayCollection();
-        $this->panier_id = new ArrayCollection();
-    }
+  
+
 
     public function getId(): ?int
     {
@@ -57,51 +56,29 @@ class ProduitsPanier
         return $this;
     }
 
-    /**
-     * @return Collection|Produit[]
-     */
-    public function getProduitId(): Collection
+    public function getPanier(): ?Panier
     {
-        return $this->produit_id;
+        return $this->panier;
     }
 
-    public function addProduitId(Produit $produitId): self
+    public function setPanier(?Panier $panier): self
     {
-        if (!$this->produit_id->contains($produitId)) {
-            $this->produit_id[] = $produitId;
-        }
+        $this->panier = $panier;
 
         return $this;
     }
 
-    public function removeProduitId(Produit $produitId): self
+    public function getProduit(): ?Produit
     {
-        $this->produit_id->removeElement($produitId);
+        return $this->produit;
+    }
+
+    public function setProduit(?Produit $produit): self
+    {
+        $this->produit = $produit;
 
         return $this;
     }
 
-    /**
-     * @return Collection|Panier[]
-     */
-    public function getPanierId(): Collection
-    {
-        return $this->panier_id;
-    }
-
-    public function addPanierId(Panier $panierId): self
-    {
-        if (!$this->panier_id->contains($panierId)) {
-            $this->panier_id[] = $panierId;
-        }
-
-        return $this;
-    }
-
-    public function removePanierId(Panier $panierId): self
-    {
-        $this->panier_id->removeElement($panierId);
-
-        return $this;
-    }
+  
 }

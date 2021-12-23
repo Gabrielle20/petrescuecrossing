@@ -41,6 +41,16 @@ class Dossier
      */
     private $documents;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $date;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $nbr;
+
     public function __construct()
     {
         $this->documents = new ArrayCollection();
@@ -113,6 +123,30 @@ class Dossier
                 $document->setDossier(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTimeInterface $date): self
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    public function getNbr(): ?int
+    {
+        return $this->nbr;
+    }
+
+    public function setNbr(int $nbr): self
+    {
+        $this->nbr = $nbr;
 
         return $this;
     }
