@@ -15,17 +15,23 @@
         </div>
 
 
-        <div class="div-center">
-            <div class="security-forms">
+        <div class="div-center col-6">
+            {{ form_start(form) }}
                 <h2>Modifier {{ form.vars.data.nom }}</h2>
-                {{ form_start(form) }}
-                    {{ form_row(form.nom) }}
-                    {{ form_row(form.prix) }}
-                    {{ form_row(form.description) }}
-                    <br>
-                    <button type="submit" class="btn btn-success">Enregistrer</button>
-                {{ form_end(form) }}
-            </div>
+                <div style="display:flex; justify-content:space-between;">
+                    <div class="col-7">
+                        {{ form_row(form.nom) }}
+                        {{ form_row(form.prix) }}
+                        {{ form_row(form.description) }}
+                    </div>
+                    <div class="col-4">
+                        <img src="{{ asset('produits/uploads/' ~ produit.picture) }}" class="card-img-top" style="object-fit:contain;">
+                        {{ form_row(form.picture) }}
+                    </div>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-success">Enregistrer</button>
+            {{ form_end(form) }}
         </div>
     </div>
 

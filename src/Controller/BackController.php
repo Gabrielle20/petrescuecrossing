@@ -46,6 +46,16 @@ class BackController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
+
+            if ($form->get('picture')->getData() !== null) {
+                $file = $form->get('picture')->getData();
+
+                $fileName = md5(uniqid()). '.'. $file->guessExtension();
+                $file->move($this->getParameter('produits_directory'), $fileName);
+                $produit->setPicture($fileName);
+            }
+
+
             $manager->persist($produit);
             $manager->flush();
 
@@ -77,6 +87,14 @@ class BackController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
+            if ($form->get('picture')->getData() !== null) {
+                $file = $form->get('picture')->getData();
+
+                $fileName = md5(uniqid()). '.'. $file->guessExtension();
+                $file->move($this->getParameter('produits_directory'), $fileName);
+                $produit->setPicture($fileName);
+            }
+
             $manager->persist($produit);
             $manager->flush();
 
@@ -86,7 +104,8 @@ class BackController extends AbstractController
         }
 
         return $this->render('back/editProduit.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'produit' => $produit
         ]);
     }
 
