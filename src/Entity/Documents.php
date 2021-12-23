@@ -55,7 +55,7 @@ class Documents
         return $this;
     }
 
-    public function getCni(): ?string
+    public function getCni()
     {
         return $this->cni;
     }
@@ -67,7 +67,7 @@ class Documents
         return $this;
     }
 
-    public function getJustifDom(): ?string
+    public function getJustifDom()
     {
         return $this->justif_dom;
     }

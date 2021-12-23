@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Documents;
 use App\Entity\Animal;
 use App\Entity\Dossier;
+
 use App\Form\DossierType;
 use App\Form\ValidateDossierType;
 use App\Controller\SecurityController;
@@ -80,13 +82,14 @@ class DossierController extends AbstractController
 
             if($form->isSubmitted() && $form->isValid())
             {
+
                 $dossier->setStatut(0); 
-                $dossier->setUser($user); 
-                $dossier->setDate(new \DateTime()); 
 
-                //supprimer quand nbr est supp de la bdd
-                $dossier->setNbr(0); 
+                $dossier->setDate(new \DateTime());
+                $dossier->setNbr(0);
 
+
+                
                 $em = $doctrine->getManager(); 
                 $em->persist($dossier); 
                 $em->flush(); 
@@ -98,15 +101,33 @@ class DossierController extends AbstractController
 
         }
         return $this->render("dossier/save.html.twig", [
-            'form' => $form->createView(), 
-        ]); 
+             'form' => $form->createView(),
+         ]);
+    }
+    /**
+     * @Route("/dossier/changeStatus/{id}", name="changeStatus")
+     */
+    public function changeStatus(Dossier $dossier,Request $request, ManagerRegistry $mr)
+    {
+        $form = $request->request->all();
+        dump($form);die();
+
+
+        /*return $this->render("dossier/single.html.twig", [
+            "dossier" => $dossier,
+            "animal" => $dossier->getAnimal(),
+            "doocument" => $document,
+            "admin" => $admin
+        ]);*/
     }
 
     /**
      * @Route("/dossier/single/{id}", name="dossier_single")
      */
-    public function single(Dossier $dossier)
+
+    public function single(Dossier $dossier,ManagerRegistry $mr)
     {
+        
         $user = $this->getUser(); 
 
         //si pas connecté

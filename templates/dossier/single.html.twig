@@ -37,6 +37,11 @@
             <img src={{ asset("img/uploads/" ~ animal.picture) }} alt="" width="300px">
         </div>
     </div>
+    <div>
+        <a href="{{ asset("pdf/uploads/" ~ document.cni) }}" target="_blank"><img src="{{ asset("img/pdfIcon.svg")}}" height="42" width="42"> Carte d'Identité</a>
+        <a href="{{ asset("pdf/uploads/" ~ document.justifDom) }}" target="_blank"><img src="{{ asset("img/pdfIcon.svg")}}" height="42" width="42"> Justificatif de Domicile</a>
+
+    </div>
     <div class="mb-3">
         <button>
             <a href={{ path('dossier_delete', {id: dossier.id} )}}>Supprimer</a>
