@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Produit;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\DocumentsRepository;
@@ -13,6 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
 
 class UserController extends AbstractController
 {
@@ -91,5 +93,15 @@ class UserController extends AbstractController
             'user' => $user,
             'dossiers' => $dossiers
         ]);
+    }
+
+
+    /**
+     * @Route("/add-to-cart/{id}", name="ajout_panier")
+     */
+    public function addToCart(Produit $produit, Security $security, PanierRepository $repo, Request $request, EntityManagerInterface $manager) {
+        $user = $security->getUser();
+
+        
     }
 }
