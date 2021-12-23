@@ -34,6 +34,11 @@ class Produit
      */
     private $description;
 
+        /**
+     * @ORM\Column(type="text")
+     */
+    private $categorie;
+
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
@@ -53,6 +58,18 @@ class Produit
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getCategorie(): ?string
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(string $categorie): self
+    {
+        $this->categorie = $categorie;
 
         return $this;
     }
