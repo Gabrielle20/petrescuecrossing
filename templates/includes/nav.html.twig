@@ -33,19 +33,18 @@
 
             {% if app.user %}
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Dropdown
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Mon compte
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="{{ path('user_account', {'id': app.user.id}) }}">Mon Compte</a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="{{ path('user_account', {'id': app.user.id}) }}">Mon Compte</a></li>
                   {% if app.user.admin == true %}
-                    <a class="dropdown-item" href="{{ path('back_list_produits') }}">Gestion</a>
+                  <li><a class="dropdown-item" href="{{ path('back_list_produits') }}">Gestion des produits</a></li>
                   {% endif %}
-                  
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="/deconnexion">Déconnexion</a>
-                </div>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="/deconnexion">Déconnexion</a></li>
+                </ul>
               </li>
             {% endif %}
             
