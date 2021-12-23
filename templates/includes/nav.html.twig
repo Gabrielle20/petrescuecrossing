@@ -3,6 +3,7 @@
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
       <a href="{{ path('index') }}" class="navbar-brand text-light">Pet Rescue Crossing</a>
 
+           
         
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
         <li class="nav-item">
@@ -16,6 +17,7 @@
         </li>
       </ul>
 
+            
       {% if not app.user %}
         <a class="nav-link btn-outline-light me-2 " href="{{ path("security_connexion") }}">Connexion</a>
         <a class="nav-link btn btn-warning" href="{{ path("registration") }}">Inscription</a>
@@ -27,6 +29,7 @@
         </a>
         <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
 
+            
               <li><a class="dropdown-item" href="{{ path('user_account', {'id': app.user.id}) }}">Mon Compte</a></li>
               {% if app.user.admin == true %}
                 <li><a class="dropdown-item" href="{{ path('dossiers') }}">Gestion des dossiers</a></li>
