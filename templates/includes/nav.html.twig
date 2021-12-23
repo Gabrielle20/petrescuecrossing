@@ -40,7 +40,11 @@
                   <li><a class="dropdown-item" href="#">Action</a></li>
                   <li><a class="dropdown-item" href="{{ path('user_account', {'id': app.user.id}) }}">Mon Compte</a></li>
                   {% if app.user.admin == true %}
+                  <li><a class="dropdown-item" href="{{ path('dossiers') }}">Gestion des dossiers</a></li>
                   <li><a class="dropdown-item" href="{{ path('back_list_produits') }}">Gestion des produits</a></li>
+                  <li><a class="dropdown-item" href="{{ path('animaList') }}">Gestion des animaux</a></li>
+                  <li><a class="dropdown-item" href="{{ path('addAnimal') }}">Ajouter un animal</a></li>
+                  <li><a class="dropdown-item" href="{{ path('back_produit_create') }}">Ajouter un produit</a></li>
                   {% endif %}
                   <li><hr class="dropdown-divider"></li>
                   <li><a class="dropdown-item" href="/deconnexion">Déconnexion</a></li>

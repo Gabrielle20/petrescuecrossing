@@ -84,9 +84,9 @@ class DossierController extends AbstractController
             {
 
                 $dossier->setStatut(0); 
+                $dossier->setUser($user);
 
                 $dossier->setDate(new \DateTime());
-                $dossier->setNbr(0);
 
 
                 

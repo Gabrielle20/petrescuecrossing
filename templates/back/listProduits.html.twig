@@ -30,7 +30,6 @@
                     </ul>
 
                     <div class="card-body">
-                        <a href="{{ path('back_produit_create') }}" class="card-link ">Créer</a>
                         <a href="{{ path('back_produit_edit', {'id': produit.id}) }}" class="card-link ">Modifier</a>
                         <a href="{{ path('back_produit_delete', {'id': produit.id}) }}" class="card-link" onclick="return confirm('Voulez-vous vraiment supprimer cet article ?')">Supprimer</a>
                     </div>
