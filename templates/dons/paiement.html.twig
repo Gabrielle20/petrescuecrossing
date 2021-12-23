@@ -8,11 +8,10 @@
             background-size: 100% 100%;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            background-color: #FFF6CF;
+            background-color: black;
             position: relative;
         }
         .card{margin: 0 auto; float: none; margin-top: 12%; width: 50%}
-
         .card-img-wrapper{
             display: flex;
             justify-content: center;
@@ -30,26 +29,26 @@
         }
     </style>
     <div class="bg-img">
-            <div class="card">
-                <div class="card-header">
-                    <strong>Rentrez les numéros de votre carte bancaire</strong>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card-body card-block">
-                            <div class="row form-group">
-                                    {{ form_start(form) }}
-                                    {{ form_end(form) }}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card-img-wrapper">
-                            <img class="card-img" src="https://www.badges25mm.fr/uploads/moyen_paiement/image/cb_3zet.png">
-                        </div>
-                    </div>
-                </div>
-
+        <div class="card">
+            <div class="card-header">
+                <strong>Rentrez les numéros de votre carte bancaire</strong>
             </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card-body card-block">
+                        <div class="row form-group">
+                            {{ form_start(form) }}
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card-img-wrapper">
+                        <img class="card-img" src="https://www.badges25mm.fr/uploads/moyen_paiement/image/cb_3zet.png">
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 {% endblock %}
