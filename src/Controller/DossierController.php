@@ -136,19 +136,13 @@ class DossierController extends AbstractController
         {
             return $this->redirectToRoute("security_connexion");
         }
-        else if($user->getAdmin() == true)
-        {
-            //on récupère tous les dossiers de la table
-            $dossiers = $this->getDoctrine()->getRepository(Dossier::class)->findAll(); 
-
-            
-        }
         //si connecté 
         else {
             return $this->render("dossier/single.html.twig", [
                 "dossier" => $dossier, 
                 "animal" => $dossier->getAnimal(), 
-                "admin" => $admin
+                "admin" => $admin,
+                'document' => $document
             ]); 
         }
     }
