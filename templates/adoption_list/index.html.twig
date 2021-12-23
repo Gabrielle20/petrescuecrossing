@@ -10,7 +10,7 @@
 .card-size { margin-bottom: 450px; }
 .card img { width: 200px; margin-top: 20px;  }
 .card-content ul { border-bottom: 1px solid #e1e1e1; list-style-type: none; padding-bottom: 15px; margin-bottom: 15px; display: flex; align-items: center; justify-content: space-between;  }
-.card-content { background: #fff; margin: -120px 24px 0; padding: 25px 25px 30px; position: relative; box-shadow: 0px 9px 34.3px 0.7px rgb(0 0 0 / 15%); border-radius: 10px; }
+.card-content { background: #fff; margin: -180px 24px 0; padding: 25px 25px 30px; position: relative; box-shadow: 0px 9px 34.3px 0.7px rgb(0 0 0 / 15%); border-radius: 10px; }
 #center { margin-left: 130px; margin-top: 15px; border-radius: 10px; width: 100px; box-shadow: 0px 9px 34.3px 0.7px rgb(0 0 0 / 5%); border: 1px solid #e1e1e1; }
 </style> 
 
@@ -21,115 +21,29 @@
 
     <div class= "card-container container-fluid mx-auto">
          <div class= "row d-inline-flex">
+         {% for animal in animaux %}        
             <div class ="card-size col-lg-4 col-md-6">
-               <div class="card h-100">
-                  <img class="card-img-top mx-auto d-block" src="{{ asset("img/cat1.png") }}"/>
-               </div>
-                  <div class="card-content">
-                  <h4 class="card-title text-center">Oscar</h4>
-                  <ul>
-                      <li>
-                        <p>Chaton sevré</p>
-                      </li>
-                      <li>
-                      <i class="far fa-calendar-alt"></i>
-                        <p>Birth: 2021</p>
-                      </li>
-                  </ul>
-                  <button id="center">Adoptez moi</button>
-                  </div>
-              </div>
-                          <div class ="card-size col-lg-4 col-md-6">
-               <div class="card h-100">
-                  <img class="card-img-top mx-auto d-block" src="{{ asset("img/cat3.png") }}"/>
-               </div>
-                  <div class="card-content">
-                  <h4 class="card-title text-center">Mascotte</h4>
-                  <ul>
-                      <li>
-                        <p>Chat himalayen</p>
-                      </li>
-                      <li>
-                      <i class="far fa-calendar-alt"></i>
-                        <p>Birth: 2019</p>
-                      </li>
-                  </ul>
-                  <button id="center">Adoptez moi</button>
-                  </div>
-              </div>
-                          <div class ="card-size col-lg-4 col-md-6">
-               <div class="card h-100">
-                  <img class="card-img-top mx-auto d-block" src="{{ asset("img/dog2.png") }}"/>
-               </div>
-                  <div class="card-content">
-                  <h4 class="card-title text-center">Funny</h4>
-                  <ul>
-                      <li>
-                        <p>Chaton sevré</p>
-                      </li>
-                      <li>
-                      <i class="far fa-calendar-alt"></i>
-                        <p>Birth: 2019</p>
-                      </li>
-                  </ul>
-                  <button id="center">Adoptez moi</button>
-                  </div>
-              </div>
-                          <div class ="card-size col-lg-4 col-md-6">
                <div class="card h-100">
                   <img class="card-img-top mx-auto d-block" src="{{ asset("img/dog3.png") }}"/>
                </div>
                   <div class="card-content">
-                  <h4 class="card-title text-center">Pongo</h4>
+                  <h4 class="card-title text-center">{{animal.nom}}</h4>
                   <ul>
                       <li>
-                        <p>Dalmatien</p>
+                        <p>{{animal.type}}</p>
                       </li>
                       <li>
                       <i class="far fa-calendar-alt"></i>
-                        <p>Birth: 2021</p>
+                        <p>{{animal.age}} an(s)</p>
                       </li>
                   </ul>
+                  <p>{{animal.description}}</p>
                   <button id="center">Adoptez moi</button>
                   </div>
-              </div>
-                          <div class ="card-size col-lg-4 col-md-6">
-               <div class="card h-100">
-                  <img class="card-img-top mx-auto d-block" src="{{ asset("img/dog4.png") }}"/>
-               </div>
-                  <div class="card-content">
-                  <h4 class="card-title text-center">Polo</h4>
-                  <ul>
-                      <li>
-                        <p>Chaton sevré</p>
-                      </li>
-                      <li>
-                      <i class="far fa-calendar-alt"></i>
-                        <p>Birth: 2021</p>
-                      </li>
-                  </ul>
-                  <button id="center">Adoptez moi</button>
-                  </div>
-              </div>
-              <div class ="card-size col-lg-4 col-md-6">
-               <div class="card h-100">
-                  <img class="card-img-top mx-auto d-block" src="{{ asset("img/cat1.png") }}"/>
-               </div>
-                  <div class="card-content">
-                  <h4 class="card-title text-center">Caramel</h4>
-                  <ul>
-                      <li>
-                        <p>Chaton sevré</p>
-                      </li>
-                      <li>
-                      <i class="far fa-calendar-alt"></i>
-                        <p>Birth: 2021</p>
-                      </li>
-                  </ul>
-                  <button id="center">Adoptez moi</button>
-                  </div>
-              </div>
-              
+              </div> 
+            {% endfor %}            
          </div>
       </div>
+
+
 {% endblock %}
