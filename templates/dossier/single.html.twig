@@ -1,5 +1,6 @@
 {% extends "base.html.twig" %}
 
+{% block title %} Liste Dossiers {% endblock %}
 {% block body %}
 
 <div class="container">
@@ -13,58 +14,46 @@
             </div>
         {% endfor %}
     </div>
-    <div class="div-center">
-        <h1>Dossier n°{{ dossier.id }}  - Etat : {{ dossier.statut }}</h1>
-        <div class="mb-3">
-            {% if (dossier.statut == 0) %}
-            <p>Statut : En cours</p>
-            {% else %}
-            <p>Statut : Validé</p>
-            {% endif %}
-        </div>
-        <div class="mb-3">
-            {% if (admin == 1) %}
-            <p>Demandeur : {{ dossier.user.email }}</p>
-            {% endif %}
-        </div>
-        <div class="mb-3">
-            <p>Animal n°{{ animal.id }}</p>
-            <p>Nom : {{ animal.nom }}</p>
-            <p>Type : {{ animal.type }}</p>
-            <p>Age : {{ animal.id }}</p>
-            <p>Couleur : {{ animal.couleur }}</p>
-            <p>Description : {{ animal.description }}</p>
-            <p>Photo : </p>
-            <img src={{ asset("img/uploads/" ~ animal.picture) }} alt="" width="300px">
-        </div>
-    </div>
-    {% if document != null %}
-    <div>
-        <a href="{{ asset("pdf/uploads/" ~ document.cni) }}" target="_blank"><img src="{{ asset("img/pdfIcon.svg")}}" height="42" width="42"> Carte d'Identité</a>
-        <a href="{{ asset("pdf/uploads/" ~ document.justifDom) }}" target="_blank"><img src="{{ asset("img/pdfIcon.svg")}}" height="42" width="42"> Justificatif de Domicile</a>
+    <div class="container col-xl-12 px-2 py-5">
+        <div class="row flex-lg-row-reverse  g-5 py-5">
+            <div class="col-10 col-sm-8 col-lg-6">
+                <img src="{{ asset("img/uploads/" ~ animal.picture) }}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="300" height="200" loading="lazy">
+            </div>
+            <div class="col-lg-6">
+                <h1 class="display-5 fw-bold lh-1 mb-4"><h1>Dossier n°{{ dossier.id }}  <br> Etat :<em> {{ dossier.statut }}</em></h1></h1>
 
-    </div>
-    {% endif %}
-    {% if admin == 1 %}
+                <p class="lead">
+                    {% if (admin == 1) %}
+                        <strong class="fw-bold">Demandeur</strong> : {{ dossier.user.email }} <br>
+                    {% endif %}
+                    <strong class="fw-bold">Nom :</strong> {{ animal.nom }} <br>
+                    <strong class="fw-bold" >Type : </strong> {{ animal.type }} <br>
+                    <strong class="fw-bold">Age : </strong> {{ animal.id }} <br>
+                    <strong class="fw-bold">Couleur : </strong>{{ animal.couleur }} <br>
+                    <strong class="fw-bold">Description : </strong> {{ animal.description }}
+                </p>
 
-        <form method="post" action="{{ path("changeStatus", {id: dossier.id}) }}">
-            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="status">
-                <option value="En attente" {% if dossier.statut == "En attente" %} selected {% endif %}>En attente</option>
-                <option value="En cours d'examen" {% if dossier.statut == "En cours d'examen" %} selected {% endif %}>En cours d'examen</option>
-                <option value="Demande validée" {% if dossier.statut == "Demande validée" %} selected {% endif %} >Demande validée</option>
-                <option value="Demande refusée" {% if dossier.statut == "Demande refusée" %} selected {% endif %}>Demande refusée</option>
-            </select>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    {% if admin == 1 %}
 
-            <button type="submit" class="btn btn-success">Mettre à jour</button>
-        </form>
-    {% endif %}
-    <div class="mb-3">
-        <button>
-            <a href={{ path('dossier_delete', {id: dossier.id} )}}>Supprimer</a>
-        </button>
-        <button>
-            <a href="/dossiers">Retour à la liste des dossiers</a>
-        </button>
+                        <form method="post" action="{{ path("changeStatus", {id: dossier.id}) }}">
+                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="status">
+                                <option value="En attente" {% if dossier.statut == "En attente" %} selected {% endif %}>En attente</option>
+                                <option value="En cours d'examen" {% if dossier.statut == "En cours d'examen" %} selected {% endif %}>En cours d'examen</option>
+                                <option value="Demande validée" {% if dossier.statut == "Demande validée" %} selected {% endif %} >Demande validée</option>
+                                <option value="Demande refusée" {% if dossier.statut == "Demande refusée" %} selected {% endif %}>Demande refusée</option>
+                            </select>
+
+                            <button type="submit" class="btn btn-success">Mettre à jour</button>
+                            <button class="btn btn-danger">
+                                <a style="color: white" href={{ path('dossier_delete', {id: dossier.id} )}}>Supprimer</a>
+                            </button>
+                        </form>
+
+                    {% endif %}
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
