@@ -12,6 +12,7 @@ use App\Controller\SecurityController;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -115,6 +116,10 @@ class DossierController extends AbstractController
         $dossier->setStatut($status);
         $em->persist($dossier);
         $em->flush();
+
+        if($status ==  "En cours d'examen"){
+            (new EmailController())->sendMail();
+        }
 
         $this->addFlash("success",'Statut changé avec succès');
         return $this->redirectToRoute('dossiers');

@@ -24,8 +24,9 @@ class EmailController extends AbstractController
     /**
      * @Route("/email/send", name="emailSending")
      */
-    public function sendMail(MailerInterface  $mailer)
+    public function sendMail()
     {
+        $mailer= MailerInterface::class;
         $email = (new TemplatedEmail())
             ->from(new Address('petrecuecrossing@gmail.com', 'Team PetRescueCrossing'))
             ->to('webflopgt@gmail.com')
