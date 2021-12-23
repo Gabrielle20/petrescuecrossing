@@ -3,15 +3,28 @@
 {% block body %}
 
 <div class="container">
-    {{ form_start(form) }}
-        <div class="form-select">
-             {{ form_label(form.Animal)}}
-              {{ form_widget(form.Animal, {attr: {class: "form-control mb-3", placeholder: "Titre"}})}}
-              {{ form_errors(form.Animal)}}
+    <div class="alert">
+        {% for type, messages in app.flashes %}
+            <div class="alert-{{ type }}">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+    <div class="div-center">
+        <div class="security-forms">
+            {{ form_start(form) }}
+                <div class="form-select">
+                    {{ form_label(form.Animal)}}
+                    {{ form_widget(form.Animal, {attr: {class: "form-control mb-3", placeholder: "Titre"}})}}
+                    {{ form_errors(form.Animal)}}
+                </div>
+                <div>
+                    {{form_row(form.Demander)}}
+                </div>
+            {{ form_end(form) }}
         </div>
-        <div>
-            {{form_row(form.Demander)}}
-        </div>
-    {{ form_end(form) }}
+    </div>
 </div>
 {% endblock %}

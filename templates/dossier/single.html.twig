@@ -13,16 +13,16 @@
         {% endfor %}
     </div>
     <div class="div-center">
-        <h1>Liste des dossiers</h1>
-        {% if (dossiers|length > 0) %}
-    <ul>
-        {% for dossier in dossiers %}
-            <li><a href={{ path('dossier_single', {id: dossier.id} )}}>Dossier n°  {{ dossier.id }}</a>
-        {% endfor %}
-    </ul>
-    {% else %}
-        <p>Il n'y a pas de dossiers pour le moment</p>
-    {% endif %}
+        <h1>Dossier n°{{ dossier.id }}</h1>
+        <div>
+            <p>Animal n°{{ animal.id }}</p>
+            <p>Nom : {{ animal.nom }}</p>
+            <p>Type : {{ animal.type }}</p>
+            <p>Age : {{ animal.id }}</p>
+            <p>Couleur : {{ animal.couleur }}</p>
+            <p>Description : {{ animal.description }}</p>
+            <p>Photo : </p>
+        </div>
     </div>
 </div>
 {% endblock %}
