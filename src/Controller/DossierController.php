@@ -122,6 +122,13 @@ class DossierController extends AbstractController
         if($status ==  "En cours d'examen"){
             (new EmailController())->sendMail($mailer, $dossier->getUser(), $dossier->getId());
         }
+        if($status ==  "Demande validée"){
+            $animal = $dossier->getAnimal();
+            $animal->setIsGiven("1");
+            $em->persist($animal);
+            $em->flush();
+        }
+
 
         $this->addFlash("success",'Statut changé avec succès');
         return $this->redirectToRoute('dossiers');
