@@ -120,7 +120,7 @@ class DossierController extends AbstractController
         $em->flush();
 
         if($status ==  "En cours d'examen"){
-            (new EmailController())->sendMail($mailer, $this->getUser(), $dossier->getId());
+            (new EmailController())->sendMail($mailer, $dossier->getUser(), $dossier->getId());
         }
 
         $this->addFlash("success",'Statut changé avec succès');
