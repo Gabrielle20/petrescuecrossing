@@ -25,6 +25,10 @@ class DonsController extends AbstractController
      */
     public function index(Request $request, ManagerRegistry $mr, UserRepository $userRepository): Response
     {
+        if($this->getUser() == null){
+            $this->addFlash('warning', 'Vous devez être connecté pour accéder à cette page');
+            return $this->redirectToRoute('security_connexion');
+        }
         $data = $this -> getData();
         $don = new Dons();
         $form = $this->createForm(PostType::class, $don);
@@ -63,7 +67,7 @@ class DonsController extends AbstractController
         if($form -> isSubmitted() && $form ->isValid()){
             $don = new Dons();
 
-            $User= $userRepository ->find(1);
+            $User= $this->getUser();
             $don -> setMontant(intval($form-> getViewData()["montant"]));
             $don -> setUser($User);
             $don->setDate(new \DateTime());
