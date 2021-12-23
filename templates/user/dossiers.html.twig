@@ -49,7 +49,7 @@
                                 <tr class="to-show">
                                     <td colspan="5" style="text-align:center">
                                         {% for document in dossier.documents %}
-                                            <small><a href="">{{ document.document.nom }}</a></small>
+                                            <small><a href="">{{ document.cni }}</a></small>
                                         {% else %}
                                             <small>Pas de documents présentés</small>
                                         {% endfor %}

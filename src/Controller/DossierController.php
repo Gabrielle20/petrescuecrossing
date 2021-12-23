@@ -109,16 +109,16 @@ class DossierController extends AbstractController
      */
     public function changeStatus(Dossier $dossier,Request $request, ManagerRegistry $mr)
     {
-        $form = $request->request->all();
-        dump($form);die();
+        $status = $request->request->get('status');
 
+        $em = $mr->getManager();
+        $dossier->setStatut($status);
+        $em->persist($dossier);
+        $em->flush();
 
-        /*return $this->render("dossier/single.html.twig", [
-            "dossier" => $dossier,
-            "animal" => $dossier->getAnimal(),
-            "doocument" => $document,
-            "admin" => $admin
-        ]);*/
+        $this->addFlash("success",'Statut changé avec succès');
+        return $this->redirectToRoute('dossiers');
+
     }
 
     /**
@@ -127,8 +127,9 @@ class DossierController extends AbstractController
 
     public function single(Dossier $dossier,ManagerRegistry $mr)
     {
-        
-        $user = $this->getUser(); 
+        $user = $this->getUser();
+        $admin = $user->getAdmin();
+        $document = isset($this->getDoctrine()->getRepository(Documents::class)->findBy(['dossier' => $dossier])[0]) ? $this->getDoctrine()->getRepository(Documents::class)->findBy(['dossier' => $dossier])[0] : null ;
 
         //si pas connecté
         if($user == null)
@@ -140,19 +141,14 @@ class DossierController extends AbstractController
             //on récupère tous les dossiers de la table
             $dossiers = $this->getDoctrine()->getRepository(Dossier::class)->findAll(); 
 
-            return $this->render("dossier/single.html.twig", [
-                "dossier" => $dossier, 
-                "animal" => $dossier->getAnimal(), 
-                "user" => $user,
-                "admin" => 1
-            ]); 
+            
         }
         //si connecté 
         else {
             return $this->render("dossier/single.html.twig", [
                 "dossier" => $dossier, 
                 "animal" => $dossier->getAnimal(), 
-                "admin" => 0
+                "admin" => $admin
             ]); 
         }
     }
