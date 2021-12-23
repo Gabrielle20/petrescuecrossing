@@ -14,7 +14,19 @@
     </div>
     <div class="div-center">
         <h1>Dossier n°{{ dossier.id }}</h1>
-        <div>
+        <div class="mb-3">
+            {% if (dossier.statut == 0) %}
+            <p>Statut : En cours</p>
+            {% else %}
+            <p>Statut : Validé</p>
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            {% if (admin == 1) %}
+            <p>Demandeur : {{ dossier.user.email }}</p>
+            {% endif %}
+        </div>
+        <div class="mb-3">
             <p>Animal n°{{ animal.id }}</p>
             <p>Nom : {{ animal.nom }}</p>
             <p>Type : {{ animal.type }}</p>
@@ -22,7 +34,16 @@
             <p>Couleur : {{ animal.couleur }}</p>
             <p>Description : {{ animal.description }}</p>
             <p>Photo : </p>
+            <img src={{ asset("img/uploads/" ~ animal.picture) }} alt="" width="300px">
         </div>
+    </div>
+    <div class="mb-3">
+        <button>
+            <a href={{ path('dossier_delete', {id: dossier.id} )}}>Supprimer</a>
+        </button>
+        <button>
+            <a href="/dossiers">Retour à la liste des dossiers</a>
+        </button>
     </div>
 </div>
 {% endblock %}

@@ -46,11 +46,6 @@ class Dossier
      */
     private $date;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $nbr;
-
     public function __construct()
     {
         $this->documents = new ArrayCollection();
@@ -139,15 +134,4 @@ class Dossier
         return $this;
     }
 
-    public function getNbr(): ?int
-    {
-        return $this->nbr;
-    }
-
-    public function setNbr(int $nbr): self
-    {
-        $this->nbr = $nbr;
-
-        return $this;
-    }
 }
