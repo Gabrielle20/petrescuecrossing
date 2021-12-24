@@ -152,7 +152,7 @@ class UserController extends AbstractController
 
 
     /**
-     * @Route("/panier", name="")
+     * @Route("/panier", name="panier")
      */
     public function getPanier(PanierRepository $repo) {
         $user = $this->getUser();
@@ -174,6 +174,20 @@ class UserController extends AbstractController
         else {
             return $this->redirectToRoute('login');
         }
+    }
+
+    /**
+     * @Route("/panier/{id}/validate", name="validate_panier")
+     */
+    public function validateCart(Panier $panier, EntityManagerInterface $manager) {
+        $panier->setStatut(true);
+
+        $manager->persist($panier);
+        $manager->flush();
+
+        $this->addFlash("success", "Nous vous remercions de vos achats, à la prochaine :)");
+
+        return $this->redirectToRoute('eshop');
     }
 
 }

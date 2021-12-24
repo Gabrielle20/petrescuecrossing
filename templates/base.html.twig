@@ -24,14 +24,8 @@
         <script src="https://kit.fontawesome.com/574b1375cd.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        {% set nbr = "" %}
-
-        {% if nbrProduits is defined %}
-            {% set nbr = nbrProduits %}
-            {% include "includes/nav.html.twig" with {'nbrProduits' : nbrProduits} only %}
-        {% endif %}
         
-        {% include "includes/nav.html.twig" with {'nbrProduits' : nbr} only %}
+        {% include "includes/nav.html.twig" only %}
 
         {% block body %}{% endblock %}
 
