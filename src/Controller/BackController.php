@@ -73,8 +73,8 @@ class BackController extends AbstractController
     /**
      * @Route("/back/produit/{id}/edit", name="back_produit_edit")
      */
-    public function editProduit(Security $security, Produit $produit, Request $request, EntityManagerInterface $manager) {
-        $user = $security->getUser();
+    public function editProduit(Produit $produit, Request $request, EntityManagerInterface $manager) {
+        $user = $this->getUser();
        
         if($user !== null && $user->getAdmin() !== true) {
             return $this->redirectToRoute('index');
