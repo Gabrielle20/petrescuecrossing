@@ -22,11 +22,18 @@
         <script src="https://kit.fontawesome.com/574b1375cd.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        {% include "includes/nav.html.twig" only %}
+        {% set nbr = "" %}
+
+        {% if nbrProduits is defined %}
+            {% set nbr = nbrProduits %}
+            {% include "includes/nav.html.twig" with {'nbrProduits' : nbrProduits} only %}
+        {% endif %}
+        
+        {% include "includes/nav.html.twig" with {'nbrProduits' : nbr} only %}
 
         {% block body %}{% endblock %}
 
-        {% include "includes/footer.html.twig" only %}
+        {# {% include "includes/footer.html.twig" only %} #}
         <script src="/js/toggle.js"></script>
     </body>
 </html>

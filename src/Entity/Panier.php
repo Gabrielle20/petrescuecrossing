@@ -35,17 +35,12 @@ class Panier
     private $user_id;
 
     /**
-     * @ORM\ManyToMany(targetEntity=ProduitsPanier::class, mappedBy="panier_id")
-     */
-    private $produitsPaniers;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $date;
 
     /**
-     * @ORM\OneToMany(targetEntity=ProduitsPanier::class, mappedBy="panier", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=ProduitsPanier::class, mappedBy="panier", orphanRemoval=true, cascade={"persist"})
      */
     private $produits;
 

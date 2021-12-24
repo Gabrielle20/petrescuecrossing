@@ -63,7 +63,7 @@ class DonsController extends AbstractController
         if($form -> isSubmitted() && $form ->isValid()){
             $don = new Dons();
 
-            $User= $userRepository ->find(1);
+            $User= $this->getUser();
             $don -> setMontant(intval($form-> getViewData()["montant"]));
             $don -> setUser($User);
             $don->setDate(new \DateTime());
