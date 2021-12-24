@@ -35,7 +35,7 @@
 		{% for article in articles %}
 			<div class ="card-size col-lg-4 col-md-6">
 				<div class="card h-100">
-					<img class="card-img-top mx-auto d-block" src="{{ asset("img/dogFood1.png") }}"/>
+					<img class="card-img-top mx-auto d-block" src="{{ asset("produits/uploads/" ~ article.picture) }}"/>
 				</div>
 				
 				<div class="card-content">
@@ -45,7 +45,7 @@
 						<li><p>{{article.prix}} €</p></li>
 					</ul>
 					<a href="{{ path('detail_product', {'id': article.id }) }}"><button id="center">Détails</button></a>	
-					<a href="{{ path('ajout_panier', {'id': article.id }) }}"><button id="center">Acheter</button></a>
+					<a href="{{ path('ajout_panier', {'id': article.id }) }}"><button id="center">Ajouter au Panier</button></a>
 				</div>
 			</div>
 		{% endfor %}
