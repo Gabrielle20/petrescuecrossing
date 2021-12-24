@@ -30,7 +30,13 @@
                     <strong class="fw-bold" >Type : </strong> {{ animal.type }} <br>
                     <strong class="fw-bold">Age : </strong> {{ animal.id }} <br>
                     <strong class="fw-bold">Couleur : </strong>{{ animal.couleur }} <br>
-                    <strong class="fw-bold">Description : </strong> {{ animal.description }}
+                    <strong class="fw-bold">Description : </strong> {{ animal.description }} <br><br>
+
+                    {% if document != null %}
+
+                    <a href="{{ asset("pdf/uploads/" ~ document.cni) }}" class="link-dark" target="_blank"><img src="{{ asset('img/pdfIcon.svg') }}" height="40" width="40">Carte d'identité</a>
+                    <a href="{{ asset("pdf/uploads/" ~ document.justifDom) }}" class="link-dark"><img src="{{ asset('img/pdfIcon.svg') }}" height="40" width="40">Justificatif de Domicile</a>
+                    {% endif %}
                 </p>
 
                 <div class="d-grid gap-2 d-md-flex justify-content-md-start">

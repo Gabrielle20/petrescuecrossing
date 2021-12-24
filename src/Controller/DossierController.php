@@ -120,13 +120,18 @@ class DossierController extends AbstractController
         $em->flush();
 
         if($status ==  "En cours d'examen"){
-            (new EmailController())->sendMail($mailer, $dossier->getUser(), $dossier->getId());
+            (new EmailController())->sendMail($mailer, $dossier->getUser(), $dossier->getId(),'adoptRequest');
+        }
+        if($status ==  "Demande refusée"){
+            (new EmailController())->sendMail($mailer, $dossier->getUser(),$dossier->getAnimal(), $dossier->getId(),'requestRefused');
         }
         if($status ==  "Demande validée"){
             $animal = $dossier->getAnimal();
             $animal->setIsGiven("1");
             $em->persist($animal);
             $em->flush();
+
+            (new EmailController())->sendMail($mailer, $dossier->getUser(),$dossier->getAnimal(), $dossier->getId(),'requestValid');
         }
 
 

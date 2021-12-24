@@ -90,8 +90,13 @@ class AnimalController extends AbstractController
     public function edit(Animal $animal, ManagerRegistry $mr, Request $request): Response
     {
         $oldPicName = $animal->getPicture();
-        
-        $picture = new File($this->getParameter('upload_file')."/".$animal->getPicture());
+
+        if(file_exists($this->getParameter('upload_file')."/".$animal->getPicture())){
+            $picture = new File($this->getParameter('upload_file')."/".$animal->getPicture());
+        }
+        else{
+            $picture = new File($this->getParameter('upload_file')."/notfounddog.png");
+        }
         $animal->setPicture($picture);
         $form = $this->createForm(EditAnimalType::class, $animal);
 
