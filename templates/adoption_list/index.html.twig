@@ -24,7 +24,7 @@
          {% for animal in animaux %}        
             <div class ="card-size col-lg-4 col-md-6">
                <div class="card h-100">
-                  <img class="card-img-top mx-auto d-block" src="{{ asset("img/dog3.png") }}"/>
+                  <img class="card-img-top mx-auto d-block" src="{{ asset("img/uploads/" ~ animal.picture) }}"/>
                </div>
                   <div class="card-content">
                   <h4 class="card-title text-center">{{animal.nom}}</h4>

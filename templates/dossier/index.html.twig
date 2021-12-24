@@ -1,13 +1,17 @@
 {% extends "base.html.twig" %}
 
+{% block title %} Mes Dossiers d'adoption {% endblock %}
+
+
 {% block body %}
 
 
     <div class="alert">
         {% for type, messages in app.flashes %}
-            <div class="alert-{{ type }}">
+            <div class="alert alert-{{type}} alert-dismissible fade show" role="alert">
                 {% for message in messages %}
-                    <p>{{ message }}</p>
+                    <strong>{{message}}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 {% endfor %}
             </div>
         {% endfor %}
