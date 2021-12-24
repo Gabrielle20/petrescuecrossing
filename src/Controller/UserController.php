@@ -172,7 +172,8 @@ class UserController extends AbstractController
             ]);
         }
         else {
-            return $this->redirectToRoute('login');
+            $this->addFlash('warning', "Connectez vous afin de pouvoir accéder à votre panier");
+            return $this->redirectToRoute('security_connexion');
         }
     }
 

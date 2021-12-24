@@ -149,6 +149,12 @@ class DossierController extends AbstractController
     public function single(Dossier $dossier,ManagerRegistry $mr)
     {
         $user = $this->getUser();
+        if($user == null) {
+            return $this->redirectToRoute('index');
+        }
+        if($user != null && $user->getAdmin() !== true) {
+            return $this->redirectToRoute('index');
+        }
         $admin = $user->getAdmin();
         $document = isset($this->getDoctrine()->getRepository(Documents::class)->findBy(['dossier' => $dossier])[0]) ? $this->getDoctrine()->getRepository(Documents::class)->findBy(['dossier' => $dossier])[0] : null ;
 
