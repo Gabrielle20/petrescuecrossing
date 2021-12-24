@@ -9,9 +9,12 @@ use App\Entity\Dossier;
 use App\Form\DossierType;
 use App\Form\ValidateDossierType;
 use App\Controller\SecurityController;
+use DeprecationTests\Foo;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -83,7 +86,7 @@ class DossierController extends AbstractController
             if($form->isSubmitted() && $form->isValid())
             {
 
-                $dossier->setStatut(0); 
+                $dossier->setStatut("En attente");
                 $dossier->setUser($user);
 
                 $dossier->setDate(new \DateTime());
@@ -107,7 +110,7 @@ class DossierController extends AbstractController
     /**
      * @Route("/dossier/changeStatus/{id}", name="changeStatus")
      */
-    public function changeStatus(Dossier $dossier,Request $request, ManagerRegistry $mr)
+    public function changeStatus(Dossier $dossier,Request $request, ManagerRegistry $mr, MailerInterface $mailer)
     {
         $status = $request->request->get('status');
 
@@ -115,6 +118,17 @@ class DossierController extends AbstractController
         $dossier->setStatut($status);
         $em->persist($dossier);
         $em->flush();
+
+        if($status ==  "En cours d'examen"){
+            (new EmailController())->sendMail($mailer, $dossier->getUser(), $dossier->getId());
+        }
+        if($status ==  "Demande validée"){
+            $animal = $dossier->getAnimal();
+            $animal->setIsGiven("1");
+            $em->persist($animal);
+            $em->flush();
+        }
+
 
         $this->addFlash("success",'Statut changé avec succès');
         return $this->redirectToRoute('dossiers');

@@ -19,6 +19,15 @@ class DonsRepository extends ServiceEntityRepository
         parent::__construct($registry, Dons::class);
     }
 
+    public function countMontant(){
+        return $this->createQueryBuilder('d')
+            ->addSelect('SUM(d.montant)')
+            ->orderBy('d.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Dons[] Returns an array of Dons objects
     //  */

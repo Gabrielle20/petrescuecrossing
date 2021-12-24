@@ -24,7 +24,7 @@ class DocumentType extends AbstractType
                 "required" =>false,
                 "attr" => ["class" => "form-control"]])
             ->add('userResponse', TextareaType::class,[
-                "label" => "Pourquoi le choisir ? Réponses sentimentales seulement autorisé",
+                "label" => "Pourquoi le choisir ? Réponses sentimentales seulement autorisées",
                 "attr" => ["class" => "form-group"]
             ])
             ->add("Valider", SubmitType::class,[

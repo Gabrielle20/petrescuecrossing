@@ -24,29 +24,21 @@ class EmailController extends AbstractController
     /**
      * @Route("/email/send", name="emailSending")
      */
-    public function sendMail(MailerInterface  $mailer)
+    public function sendMail(MailerInterface $mailer, $user, $idDossier)
     {
         $email = (new TemplatedEmail())
             ->from(new Address('petrecuecrossing@gmail.com', 'Team PetRescueCrossing'))
-            ->to('webflopgt@gmail.com')
+            ->to($user->getEmail())
             ->subject('Demande d\'Adoption')
             ->priority(Email::PRIORITY_HIGH)
             ->htmlTemplate('email/adoptRequest.html.twig')
             ->context([
                 'animalName' => 'Ragnar',
-                'username' =>'Pagot D.FloW'
+                'username' =>$user->getUsername(),
+                'dossier' =>$idDossier
             ]);
         $mailer->send($email);
-        if($mailer){
-            return $this->render('email/send.html.twig', [
-                'etat' => 'success',
-            ]);
-        }
-        else{
-            return $this->render('email/send.html.twig', [
-                'etat' => 'fail',
-            ]);
-        }
+        return true;
     }
     
 }

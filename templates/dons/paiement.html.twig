@@ -1,0 +1,54 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <style>
+        body{
+            background-image: url("https://media.istockphoto.com/vectors/space-background-vector-id931901602?k=20&m=931901602&s=612x612&w=0&h=EdOaPd97sOkDeQEh5iHlPv0P5dduAYJFK1GnRC9sBxA=");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-color: black;
+            position: relative;
+        }
+        .card{margin: 0 auto; float: none; margin-top: 12%; width: 50%}
+        .card-img-wrapper{
+            display: flex;
+            justify-content: center;
+            margin: auto;
+            height: 100%;
+            align-content: center;
+        }
+        .card-img{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            align-self: center;
+            margin: auto;
+            width: 50%;
+        }
+    </style>
+    <div class="bg-img">
+        <div class="card">
+            <div class="card-header">
+                <strong>Rentrez les numéros de votre carte bancaire</strong>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card-body card-block">
+                        <div class="row form-group">
+                            {{ form_start(form) }}
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card-img-wrapper">
+                        <img class="card-img" src="https://www.badges25mm.fr/uploads/moyen_paiement/image/cb_3zet.png">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello BackController!{% endblock %}
+{% block title %}List des produits{% endblock %}
 
 {% block body %}
 
@@ -19,7 +19,7 @@
         <div class="row" style="margin-top: 6rem; justify-content:space-around;">
             {% for produit in produits %}
                 <div class="card" style="width: 18rem;">
-                    <img src="..." class="card-img-top" alt="...">
+                    <img src="{{ asset('produits/uploads/' ~ produit.picture) }}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{ produit.nom }}</h5>
                         <p class="card-text">{{ produit.description }}</p>

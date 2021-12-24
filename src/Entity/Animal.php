@@ -59,6 +59,11 @@ class Animal
      */
     private $picture;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isGiven;
+
     public function __construct()
     {
         $this->dossiers = new ArrayCollection();
@@ -193,5 +198,17 @@ class Animal
         }
 
         return true;
+    }
+
+    public function getIsGiven(): ?bool
+    {
+        return $this->isGiven;
+    }
+
+    public function setIsGiven(?bool $isGiven): self
+    {
+        $this->isGiven = $isGiven;
+
+        return $this;
     }
 }

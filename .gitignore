@@ -22,3 +22,8 @@
 .gitignore
 /migrations/
 .env
+public/produits/uploads/7a6e2c870a88887e02c5a580c9b1f6d5.jpg
+public/produits/uploads/a45514797eebe785b1782f8afa875745.jpg
+symfony.lock
+public/pdf/uploads/4199391c6a66ce37a010f6b6775e632b.jpg
+public/pdf/uploads/cf3ab589f72f46f428aa3c3b532aaa8e.jpg

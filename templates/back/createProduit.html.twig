@@ -1,4 +1,5 @@
 {% extends "base.html.twig" %}
+{% block title %} Création produits {% endblock %}
 
 
 
@@ -13,8 +14,9 @@
                     {{ form_row(form.nom) }}
                     {{ form_row(form.prix) }}
                     {{ form_row(form.description) }}
+                    {{ form_row(form.picture) }}
                     <br>
-                    <button type="submit" class="btn btn-success">Enregistrer</button>
+                    <button type="submit" class="btn btn-success" style="width: 100%;">Enregistrer</button>
                 {{ form_end(form) }}
             </div>
         </div>

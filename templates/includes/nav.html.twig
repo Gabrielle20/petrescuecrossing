@@ -1,59 +1,41 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
+<header class="p-3 border-bottom bg-dark text-light">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <a href="{{ path('index') }}" class="navbar-brand text-light">Pet Rescue Crossing</a>
 
-        <a href="{{ path('index') }}" class="navbar-brand">Pet Rescue Crossing</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-      
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Nos Animaux</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Nos Produits</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Faire un don</a>
-            </li>
-             
-            {% if not app.user %}
-              <li class="nav-item">
-                <a class="nav-link" href="/login">Connexion</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/inscription">Inscription</a>
-              </li>
-            {% endif %}
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <li class="nav-item">
+          <a class="nav-link text-light link-dark" href="{{ path("adoption_list") }}">Nos Animaux</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light link-dark" href="{{ path("eshop") }}">Nos Produits</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light link-dark" href="{{ path("dons") }}">Faire un don</a>
+        </li>
+      </ul>
 
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
+      {% if not app.user %}
+        <a class="nav-link btn-outline-light me-2 " href="{{ path("security_connexion") }}">Connexion</a>
+        <a class="nav-link btn btn-warning" href="{{ path("registration") }}">Inscription</a>
+      {% else %}
+      <div class="dropdown text-end">
+        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" alt="mdo" width="32" height="32" class="rounded-circle">
+        </a>
+        <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
 
-            {% if app.user %}
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Mon compte
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="{{ path('user_account', {'id': app.user.id}) }}">Mon Compte</a></li>
-                  {% if app.user.admin == true %}
-                  <li><a class="dropdown-item" href="{{ path('dossiers') }}">Gestion des dossiers</a></li>
-                  <li><a class="dropdown-item" href="{{ path('back_list_produits') }}">Gestion des produits</a></li>
-                  <li><a class="dropdown-item" href="{{ path('animaList') }}">Gestion des animaux</a></li>
-                  <li><a class="dropdown-item" href="{{ path('addAnimal') }}">Ajouter un animal</a></li>
-                  <li><a class="dropdown-item" href="{{ path('back_produit_create') }}">Ajouter un produit</a></li>
-                  {% endif %}
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="/deconnexion">Déconnexion</a></li>
-                </ul>
-              </li>
-            {% endif %}
-            
-          </ul>
-        </div>
-
+              <li><a class="dropdown-item" href="{{ path('user_account', {'id': app.user.id}) }}">Mon Compte</a></li>
+              {% if app.user.admin == true %}
+                <li><a class="dropdown-item" href="{{ path('dossiers') }}">Gestion des dossiers</a></li>
+                <li><a class="dropdown-item" href="{{ path('back_list_produits') }}">Gestion des produits</a></li>
+                <li><a class="dropdown-item" href="{{ path('animaList') }}">Gestion des animaux</a></li>
+                <li><a class="dropdown-item" href="{{ path('addAnimal') }}">Ajouter un animal</a></li>
+                <li><a class="dropdown-item" href="{{ path('back_produit_create') }}">Ajouter un produit</a></li>
+              {% endif %}
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/deconnexion">Déconnexion</a></li>
+        </ul>
+      </div>
+      {% endif %}
     </div>
-</nav>
+</header>

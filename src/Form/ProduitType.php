@@ -4,9 +4,11 @@ namespace App\Form;
 
 use App\Entity\Produit;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class ProduitType extends AbstractType
 {
@@ -30,6 +32,13 @@ class ProduitType extends AbstractType
                     'class' => 'form-control',
                     'placeholder' => 'Description'
                 ]
+            ])
+            ->add('picture', FileType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'mapped' => false,
+                'constraints' => [new File([])]
             ])
         ;
     }
