@@ -16,10 +16,6 @@ class DossierType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('Animal', EntityType::class, [
-                "class" => Animal::class, 
-                "choice_label" => "nom"
-            ])
             ->add("Demander", SubmitType::class)
         ;
     }

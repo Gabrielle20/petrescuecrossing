@@ -62,9 +62,9 @@ class DossierController extends AbstractController
     }
 
     /**
-     * @Route("/dossier/save", name="dossier_save")
+     * @Route("/dossier/{id}/save", name="dossier_save")
      */
-    public function save(Request $request, ManagerRegistry $doctrine): Response
+    public function save(Request $request, ManagerRegistry $doctrine, Animal $animal): Response
     {
         $user = $this->getUser(); 
         
@@ -86,6 +86,7 @@ class DossierController extends AbstractController
             if($form->isSubmitted() && $form->isValid())
             {
 
+                $dossier->setAnimal($animal);
                 $dossier->setStatut("En attente");
                 $dossier->setUser($user);
 
@@ -97,7 +98,7 @@ class DossierController extends AbstractController
                 $em->persist($dossier); 
                 $em->flush(); 
 
-                $this->addFlash("success", "Dossier enregistré ! ");
+                $this->addFlash("success", "Dossier enregistré ! Votre demande a bien était prise en compte.");
 
                 return $this->redirectToRoute("dossiers");
             }
@@ -105,6 +106,7 @@ class DossierController extends AbstractController
         }
         return $this->render("dossier/save.html.twig", [
              'form' => $form->createView(),
+             'animal' => $animal,
          ]);
     }
     /**

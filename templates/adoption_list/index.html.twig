@@ -38,7 +38,7 @@
                       </li>
                   </ul>
                   <p>{{animal.description}}</p>
-                  <button id="center">Adoptez moi</button>
+                  <a href="{{ path('dossier_save', {'id': animal.id }) }}"><button id="center">Adoptez moi</button></a>
                   </div>
               </div> 
             {% endfor %}            

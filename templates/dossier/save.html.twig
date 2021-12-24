@@ -16,14 +16,32 @@
             </div>
         {% endfor %}
     </div>
+
+    <div class="container col-xl-12 px-2 py-5">
+        <div class="row flex-lg-row-reverse  g-5 py-5">
+            <div class="col-10 col-sm-8 col-lg-6">
+                <img src="{{ asset("img/uploads/" ~ animal.picture) }}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="300" height="200" loading="lazy">
+            </div>
+            <div class="col-lg-6">
+
+                <p class="lead">
+                    <strong class="fw-bold">Nom :</strong> {{ animal.nom }} <br>
+                    <strong class="fw-bold" >Type : </strong> {{ animal.type }} <br>
+                    <strong class="fw-bold">Age : </strong> {{ animal.age }} <br>
+                    <strong class="fw-bold">Couleur : </strong>{{ animal.couleur }} <br>
+                    <strong class="fw-bold">Description : </strong> {{ animal.description }}
+                </p>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="div-center">
         <div class="security-forms">
             {{ form_start(form) }}
-                <div class="form-select">
-                    {{ form_label(form.Animal)}}
-                    {{ form_widget(form.Animal, {attr: {class: "form-control mb-3", placeholder: "Titre"}})}}
-                    {{ form_errors(form.Animal)}}
-                </div>
                 <div>
                     {{form_row(form.Demander)}}
                 </div>
