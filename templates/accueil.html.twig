@@ -1,15 +1,53 @@
 {% extends "base.html.twig" %}
 {% block stylesheets %}
     <link rel="stylesheet" href="/css/base.css">
+    <style>
+        #top { background-image: url({{ asset("img/footer_bg.jpg") }}); display: flex; align-items: center; justify-content: center; margin-bottom: 100px; }
+        .card-container { margin: 30px;}
+        .card { background-color: #F4F1EA; border: 0.1px solid white; }
+        .card-size { margin-bottom: 150px; }
+        .card img { width: 200px; margin-top: 20px;  }
+        .card-content ul { border-bottom: 1px solid #e1e1e1; list-style-type: none; padding-bottom: 15px; margin-bottom: 15px; display: flex; align-items: center; justify-content: space-between;  }
+        .card-content { background: #fff; margin: -180px 24px 0; padding: 25px 25px 30px; position: relative; box-shadow: 0px 9px 34.3px 0.7px rgb(0 0 0 / 15%); border-radius: 10px; }
+        #center { margin-left: 130px; margin-top: 15px; border-radius: 10px; width: 100px; box-shadow: 0px 9px 34.3px 0.7px rgb(0 0 0 / 5%); border: 1px solid #e1e1e1; }
+    </style>
 {% endblock %}
+
 
 {% block body %}
 <img class="baniere"
      src="/img/baniere.jpg"
      alt="Grapefruit slice atop a pile of other slices">
 <div class="img-bg">
-    <h1 class="titrebase">Bienvenu sur Pet Rescue Crossing .fr !</h1>
+    <h1 class="titrebase">Bienvenu sur Pet Rescue Crossing .fr ! <br> Nos deriniers arrivés</h1>
+
     <div class="container">
+        <div class= "card-container container-fluid mx-auto">
+
+            <div class= "row d-inline-flex">
+                {% for animal in animals %}
+                    <div class ="card-size col-lg-4 col-md-6">
+                        <div class="card h-100">
+                            <img class="card-img-top mx-auto d-block" src="{{ asset("img/uploads/" ~ animal.picture) }}"/>
+                        </div>
+                        <div class="card-content">
+                            <h4 class="card-title text-center">{{animal.nom}}</h4>
+                            <ul>
+                                <li>
+                                    <p>{{animal.type}}</p>
+                                </li>
+                                <li>
+                                    <i class="far fa-calendar-alt"></i>
+                                    <p>{{animal.age}} an(s)</p>
+                                </li>
+                            </ul>
+                            <p>{{animal.description}}</p>
+                            <a href="{{ path('dossier_save', {'id': animal.id }) }}"><button id="center">Adoptez moi</button></a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
         <div class="card-group mb-3">
             <div class="card">
                 <div class="card-header"><h3 class="card-title">Adoptez en quelques clics !</h3></div>
@@ -21,13 +59,13 @@
                     <p class="card-text"><button class="btn btn-secondary"><a class="text-white" href={{ path( "adoption_list") }}>Faire une demande</a></button></p>
                 </div>
             </div>
-            <div class="card">
+            <div class="card" style="margin-left: 50px">
                 <div class="card-header"><h3 class="card-title">Faites votre shopping au passage </h3></div>
                 <div class="card-body">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
                     <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>
                 </svg>
-                    <p class="card-text">Faites votre shopping directement après adoption ! </p>
+                    <p class="card-text">Vous n'avez pas de quoi occuper votre nouveau compagnon ? <br>Faites votre shopping directement après adoption ! </p>
                     <p class="card-text"><small class="text-muted"><button class="btn btn-secondary"><a class="text-white" href="{{ path("eshop") }}">Shopping</a></button></small></p>
                 </div>
             </div>
@@ -44,7 +82,7 @@
                     <p class="card-text"><small class="text-muted"><button class="btn btn-secondary"><a class="text-white" href={{ path("registration") }}>S'inscrire</a></button></small></p>
                 </div>
             </div>
-            <div class="card">
+            <div class="card" style="margin-left: 50px">
                 <div class="card-header"><h3 class="card-title">Dons</h3></div>
                 <div class="card-body">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-gift" viewBox="0 0 16 16">

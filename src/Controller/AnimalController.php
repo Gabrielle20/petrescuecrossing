@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Entity\Animal;
 use App\Form\EditAnimalType;
 use App\Form\SaveAnimalType;
+use App\Repository\AnimalRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\File;
@@ -20,9 +21,17 @@ class AnimalController extends AbstractController
     /**
      * @Route("/", name="index")
      */
-    public function index()
+    public function index(AnimalRepository $repo)
     {
-        return $this->render('accueil.html.twig');
+        $animaux = $repo->createQueryBuilder('a');
+        $animaux->select('a')
+            ->orderBy('a.date_arrive', 'DESC')
+            ->setMaxResults(3);
+        $animals = $animaux->getQuery()->getResult();
+
+
+        return $this->render('accueil.html.twig',
+            ['animals' => $animals]);
     }
 
     /**
