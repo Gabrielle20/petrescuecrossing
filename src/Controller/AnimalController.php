@@ -20,11 +20,9 @@ class AnimalController extends AbstractController
     /**
      * @Route("/", name="index")
      */
-    public function index(): Response
+    public function index()
     {
-        return $this->render('front/index.html.twig', [
-            'controller_name' => 'AnimalController',
-        ]);
+        return $this->render('accueil.html.twig');
     }
 
     /**
@@ -168,11 +166,5 @@ class AnimalController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/accueil", name="accueil")
-     */
-    public function accueil()
-    {
-        return $this->render('accueil.html.twig'); 
-    }
+
 }
