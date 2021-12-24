@@ -162,4 +162,12 @@ class AnimalController extends AbstractController
             'animal' => $animal
         ]);
     }
+
+    /**
+     * @Route("/accueil", name="accueil")
+     */
+    public function accueil()
+    {
+        return $this->render('accueil.html.twig'); 
+    }
 }
